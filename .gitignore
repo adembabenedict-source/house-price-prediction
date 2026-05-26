@@ -1,0 +1,19 @@
+__pycache__/
+.vscode/
+.env
+*.pyc
+*.pyo
+*.pyd
+.Python
+build/
+dist/
+*.egg-info/
+.env/
+*.sqlite3
+*.db
+.ipynb_checkpoints/
+models/
+*.log
+
+# Data files
+data/*.csv

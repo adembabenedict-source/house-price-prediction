@@ -1,0 +1,12 @@
+House Price Prediction Results
+==============================
+
+Model: Linear Regression
+Dataset: California Housing (20,640 samples)
+
+Performance Metrics:
+R² Score: 0.5758
+RMSE: $74,558.14
+MAE: $53,320.01
+
+Features used: ['MedInc', 'HouseAge', 'AveRooms', 'AveBedrms', 'Population', 'AveOccup', 'Latitude', 'Longitude']
