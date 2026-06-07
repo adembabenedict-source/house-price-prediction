@@ -1,39 +1,22 @@
-# House Prediction System
+# 🏠 California House Price Prediction
 
-A starter Python project for house price prediction using scikit-learn.
+**🚀 Live Demo:** [house-price-prediction-9hktjfh8qc7qjotoowupvm.streamlit.app](https://house-price-prediction-9hktjfh8qc7qjotoowupvm.streamlit.app/)
 
-## What it includes
+A machine learning web app that predicts California house prices using scikit-learn regression on the 1990 California Housing dataset.
 
-- `src/train.py` — trains a regression model using the California housing dataset
-- `src/predict.py` — loads the saved model and makes predictions
-- `src/data.py` — dataset loading and feature preparation
-- `src/model.py` — model creation, saving, and evaluation
-- `requirements.txt` — Python dependencies
+![App Screenshot](https://via.placeholder.com/800x400.png?text=Add+your+screenshot+here)
 
-## Quick start
+## **What it includes**
 
-1. Create a new Python environment and install dependencies:
+- `train.py` - Trains a regression model using the California housing dataset
+- `app.py` - Streamlit web app for interactive predictions
+- `models/house_price_model.joblib` - Trained model file
+- `requirements.txt` - Python dependencies
 
+## **Quick Start**
+
+**1. Create a new Python environment and install dependencies:**
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-```
-
-2. Train the model:
-
-```powershell
-python src\train.py
-```
-
-3. Make a prediction using the saved model:
-
-```powershell
-python src\predict.py
-```
-
-## Next steps
-
-- Replace the built-in sample dataset with your own CSV data
-- Add feature engineering for your house dataset
-- Build a web or API interface for real-time predictions
