@@ -28,6 +28,20 @@ if 'user_input_df' not in st.session_state:
 def load_data():
     try:
         data = pd.read_csv("kc_house_data.csv", encoding='utf-8', on_bad_lines='skip', low_memory=False)
+
+        # Debug line - remove this after it works
+        st.sidebar.write("Debug - CSV Columns:", list(data.columns))
+
+        # Validate required columns exist
+        required_cols = ['bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors',
+                        'waterfront', 'view', 'condition', 'grade', 'sqft_above',
+                        'sqft_basement', 'yr_built', 'lat', 'long', 'sqft_living15',
+                        'sqft_lot15', 'price']
+        missing = [col for col in required_cols if col not in data.columns]
+        if missing:
+            st.error(f"❌ CSV missing columns: {missing}")
+            st.stop()
+
         return data
     except FileNotFoundError:
         st.error("❌ Missing kc_house_data.csv. Upload it to GitHub.")
@@ -66,7 +80,7 @@ model, scaler, r2, mae, features = train_model(df)
 
 # --- UI ---
 st.title("🏠 House Price Predictor")
-st.markdown("Machine Learning Model • King County Dataset • Built with XGBoost + Plotly")
+st.markdown("Machine Learning Model • King County Dataset • Built with RandomForest + Plotly")
 
 # --- Sidebar Inputs ---
 st.sidebar.header("Enter House Details")
