@@ -114,7 +114,7 @@ with chart_col2:
     )
     if predicted_price > 0:
         fig_scatter.add_trace(
-            go.Scatter(x=, y=[predicted_price], mode='markers',
+            go.Scatter(x=[sqft], y=[predicted_price], mode='markers',
                       marker=dict(size=15, color='red', symbol='star'),
                       name='Your House')
         )
