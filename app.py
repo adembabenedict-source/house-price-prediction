@@ -85,7 +85,7 @@ st.markdown("Machine Learning Model • King County Dataset • Built with Rando
 # --- Sidebar Inputs ---
 st.sidebar.header("Enter House Details")
 bedrooms = st.sidebar.slider("Bedrooms", 1, 10, 3)
-bathrooms = st.sidebar.slider("Bathrooms", 1, 8, 2, 0.5)
+bathrooms = st.sidebar.slider("Bathrooms", 1.0, 8.0, 2.0, 0.5)
 sqft_living = st.sidebar.number_input("Living Area (sqft)", 500, 10000, 2000, 50)
 sqft_lot = st.sidebar.number_input("Lot Size (sqft)", 500, 500000, 7000, 100)
 floors = st.sidebar.slider("Floors", 1.0, 3.5, 1.0, 0.5)
