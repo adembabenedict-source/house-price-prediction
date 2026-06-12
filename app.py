@@ -6,7 +6,7 @@ import joblib
 import os
 from sklearn.linear_model import LinearRegression
 
-# --- PAGE CONFIG - Makes it 10/10 ---
+# --- PAGE CONFIG ---
 st.set_page_config(
     page_title="House Price AI",
     page_icon="🏠",
@@ -14,19 +14,16 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# --- INITIALIZE ALL VARIABLES - Prevents NameError ---
+# --- INITIALIZE ALL VARIABLES ---
 predicted_price = 0
 model = None
 df = pd.DataFrame()
-fig_hist = None
-fig_scatter = None
-fig_importance = None
 
 # --- HEADER ---
 st.title("🏠 House Price Predictor")
 st.caption("Machine Learning Model • King County Dataset • Built with XGBoost + Plotly")
 
-# --- LOAD DATA - Charts work even if model fails ---
+# --- LOAD DATA ---
 @st.cache_data
 def load_data():
     try:
@@ -38,7 +35,7 @@ def load_data():
 
 df = load_data()
 
-# --- LOAD OR TRAIN MODEL - Never crashes ---
+# --- LOAD OR TRAIN MODEL ---
 @st.cache_resource
 def load_model():
     MODEL_PATH = "model.pkl"
@@ -57,7 +54,7 @@ def load_model():
 
 model = load_model()
 
-# --- SIDEBAR INPUTS - Professional layout ---
+# --- SIDEBAR INPUTS ---
 with st.sidebar:
     st.header("Enter House Details")
     sqft = st.number_input("Square Feet", min_value=300, max_value=15000, value=2000, step=50)
@@ -69,7 +66,7 @@ with st.sidebar:
     st.caption("Model: Linear Regression")
     st.caption(f"Trained on {len(df):,} houses")
 
-# --- PREDICTION - Wrapped in try/except ---
+# --- PREDICTION ---
 try:
     features = [[sqft, bedrooms, bathrooms, yr_built]]
     predicted_price = model.predict(features)[0]
@@ -91,7 +88,7 @@ with col3:
 
 st.markdown("---")
 
-# --- CHARTS - Always render ---
+# --- CHARTS ---
 chart_col1, chart_col2 = st.columns(2)
 
 with chart_col1:
@@ -124,7 +121,7 @@ with chart_col2:
     fig_scatter.update_layout(height=400)
     st.plotly_chart(fig_scatter, use_container_width=True)
 
-# --- FEATURE IMPORTANCE - Only if model has it ---
+# --- FEATURE IMPORTANCE ---
 if hasattr(model, 'feature_importances_'):
     st.subheader("What Drives Price?")
     importance_df = pd.DataFrame({
@@ -139,7 +136,7 @@ if hasattr(model, 'feature_importances_'):
     fig_importance.update_layout(height=300)
     st.plotly_chart(fig_importance, use_container_width=True)
 else:
-    st.info("Feature importance not available for this model type.")
+    st.info("Feature importance not available for Linear Regression. Switch to XGBoost to see this.")
 
 # --- FOOTER ---
 st.markdown("---")
